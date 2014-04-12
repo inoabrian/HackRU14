@@ -1,0 +1,119 @@
+  /*              Question Array                  */
+  var questionArray = new Array();
+  questionArray.push("Create a loop that fills an array with the numbers 1-5 in that order. Then output the array.\r\n//Use these variables.\r\n//var i;\r\n//var output;");
+  questionArray.push("Create a for loop that returns an array with the vowels in order.");
+  questionArray.push("Question3.");
+  questionArray.push("Question4.");
+  questionArray.push("Question5.");
+  /******************End Of Question Array*****************/
+  
+  
+  var max = questionArray.length - 1;
+  var min = 0;
+  var randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+
+
+  /*              Answer Array              */
+  
+  var answerArray = new Array();
+  answerArray.push('for(var i = 0; i < 5; i++){console.log(i+1);}');
+
+  /*****************End Of Answer Array**************/
+  
+$(document).ready(function(){
+    /******   Set up the Ace Editor     ******/
+		var editor = ace.edit("editor");
+		editor.setTheme("ace/theme/monokai");
+		editor.getSession().setMode("ace/mode/javascript");
+    editor.getSession().setUseWrapMode(true);
+    
+    var seceditor = ace.edit("code");
+    seceditor.setTheme("ace/theme/monokai");
+    seceditor.getSession().setMode("ace/mode/javascript");
+    seceditor.getSession().setUseWrapMode(true);
+    seceditor.setReadOnly();
+    /********************************************/
+    
+    /******       Submit Button Clicked   *******/
+    $("#submit").click(function(e){
+      e.preventDefault();
+      //var trail  = editor.getSession().getDocument();
+      var getlength = editor.getSession().getLength();
+      //console.log("Length:" + getlength);
+      var whatsthis = editor.getSession().getLines(5,getlength);
+
+     //console.log(whatsthis);
+      
+      var code = "";
+      //$("#code").text("");
+      for(var line in whatsthis){
+          //console.log("A line:" + whatsthis[line]);
+          
+          code += whatsthis[line];
+          code += "\n";
+          //$("#code").append(code);
+          //$("#code").append('<br>');
+      }
+        //seceditor.setValue(code);
+        console.log(code);
+        seceditor.setValue(code.toString());
+        
+        
+        
+      
+      //console.log(range);
+      //console.log(trail);
+      //var code = editor.getValue();
+      /**************************************
+      var spaceChar = "\u21B5";
+      //console.log(spaceChar);
+      for(var lines in code){
+        console.log(code[lines]);
+        if(code[lines] == spaceChar){
+          console.log("NEWLINE BITCH");
+        }
+      }*****/
+      /********************************************/
+      
+      //$("#code").text(code);
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      try {
+        s.appendChild(document.createTextNode(code));
+        document.body.appendChild(s);
+      } catch (e) {
+        s.text = code;
+        document.body.appendChild(s);
+      }
+      //for(var lines in code){console.log(code);}
+      //console.log(answerArray[0]);
+      //console.log(s.text);
+      //var a = s.text.indexOf('f');
+      //s.text = code.substring(a);
+      //console.log(s.text);
+      //console.log(answerArray[0]);
+      //if(answerArray[0] == s.text){alert("Congratz!");} 
+    });
+    /*********************************************/
+    
+    /*******        Clear Button Clicked    *******/
+    $("#clear").click(function(e){
+      e.preventDefault();
+      var code = "";
+      code += editor.setValue("Code here ->");
+      $("#code").text(code);
+    });
+	  /***********************************************/
+    
+	  /********       Side Bar Handler        ********/
+	$("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("active");
+      $("#main_icon").toggleClass("glyphicon glyphicon-chevron-right");
+      $("#main_icon").toggleClass("glyphicon glyphicon-chevron-left");
+  });
+    /************************************************/
+/*$('#problem-set').prepend('<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Problem</h3></div><div class="panel-body" id="questions" ><br>Do it in JavaScript</br> </div></div></div>');*/
+
+  editor.setValue("//" + questionArray[0]);
+        });
