@@ -1,8 +1,8 @@
   /*              Question Array                  */
   var questionArray = new Array();
-  questionArray.push("Create a loop that fills an array with the numbers 1-5 in that order. Then output the array.\r\n//Use these variables.\r\n//var i;\r\n//var output;");
-  questionArray.push("Create a for loop that returns an array with the vowels in order.");
-  questionArray.push("Question3.");
+  //questionArray.push("Create a loop that fills an array with the numbers 1-5 in that order." + <br> + "Then output the array." + <br> + "\r\n//Use these variables." + </br> + "//var i;" + </br> + "\r\n//var output;");
+  //questionArray.push("Create a for loop that returns an array with the vowels in order.");
+  //questionArray.push("Question3.");
   questionArray.push("Question4.");
   questionArray.push("Question5.");
   /******************End Of Question Array*****************/
@@ -22,17 +22,22 @@
   
 $(document).ready(function(){
     /******   Set up the Ace Editor     ******/
-		var editor = ace.edit("editor");
-		editor.setTheme("ace/theme/monokai");
-		editor.getSession().setMode("ace/mode/javascript");
+	var editor = ace.edit("editor");
+	editor.setTheme("ace/theme/monokai");
+	editor.getSession().setMode("ace/mode/javascript");
     editor.getSession().setUseWrapMode(true);
+    editor.getSession().setUseWorker(false);
     
     var seceditor = ace.edit("code");
     seceditor.setTheme("ace/theme/monokai");
     seceditor.getSession().setMode("ace/mode/javascript");
     seceditor.getSession().setUseWrapMode(true);
-    seceditor.setReadOnly();
+    seceditor.getSession().setUseWorker(false);
+    seceditor.setReadOnly(true);
+    
+   
     /********************************************/
+ 
     
     /******       Submit Button Clicked   *******/
     $("#submit").click(function(e){
@@ -40,7 +45,7 @@ $(document).ready(function(){
       //var trail  = editor.getSession().getDocument();
       var getlength = editor.getSession().getLength();
       //console.log("Length:" + getlength);
-      var whatsthis = editor.getSession().getLines(5,getlength);
+      var whatsthis = editor.getSession().getLines(0,getlength);
 
      //console.log(whatsthis);
       
@@ -55,10 +60,8 @@ $(document).ready(function(){
           //$("#code").append('<br>');
       }
         //seceditor.setValue(code);
-        console.log(code);
-        seceditor.setValue(code.toString());
-        
-        
+        //console.log(code);
+        seceditor.setValue(code.toString());        
         
       
       //console.log(range);
@@ -76,7 +79,7 @@ $(document).ready(function(){
       /********************************************/
       
       //$("#code").text(code);
-      var s = document.createElement('script');
+      /*var s = document.createElement('script');
       s.type = 'text/javascript';
       try {
         s.appendChild(document.createTextNode(code));
@@ -92,7 +95,7 @@ $(document).ready(function(){
       //s.text = code.substring(a);
       //console.log(s.text);
       //console.log(answerArray[0]);
-      //if(answerArray[0] == s.text){alert("Congratz!");} 
+      //if(answerArray[0] == s.text){alert("Congratz!");} */
     });
     /*********************************************/
     
@@ -101,19 +104,16 @@ $(document).ready(function(){
       e.preventDefault();
       var code = "";
       code += editor.setValue("Code here ->");
-      $("#code").text(code);
+      seceditor.setValue(code.toString());
     });
 	  /***********************************************/
     
 	  /********       Side Bar Handler        ********/
-	$("#menu-toggle").click(function(e) {
+   $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("active");
       $("#main_icon").toggleClass("glyphicon glyphicon-chevron-right");
       $("#main_icon").toggleClass("glyphicon glyphicon-chevron-left");
   });
     /************************************************/
-/*$('#problem-set').prepend('<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Problem</h3></div><div class="panel-body" id="questions" ><br>Do it in JavaScript</br> </div></div></div>');*/
-
-  editor.setValue("//" + questionArray[0]);
-        });
+});
