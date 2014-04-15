@@ -19,7 +19,9 @@
 <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 <script src = "./myJS.js" type="text/javascript"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script>
+<script src = "./client_side_serverCode.js" type="text/javascript"></script>
+<script src = "./start_and_submission.js" type="text/javascript"></script>
+<!-- <script>
   var room = "abc123";
 
   var socket = io.connect('http://localhost:8000');
@@ -77,7 +79,7 @@
   });
 
   
-</script>
+</script> -->
 
 <script>
   function feedItFeedIt(){
@@ -90,7 +92,7 @@
      window.location.href =link;
   }
 </script>
-
+<!-- 
 <script>
 $(document).ready(function(){
 	$('#popup-start').click(function(){
@@ -107,7 +109,7 @@ $(document).ready(function(){
       	socket.emit('player-submission', {code:code, lines:getlength});
     });
 });
-</script>
+</script> -->
 
 <style type="text/css" media="screen">
 	html 
